@@ -1,0 +1,23 @@
+
+{
+  "port":3771,
+  "skipRoutes":[
+    "POST/employee/login"
+  ],
+
+  "pathRoles":{
+    "POST/employee": ["hr"],
+    "PUT/employee/roles": ["supervisor"],
+    "PATCH/employee": ["hr"],
+    "PATCH/employee/password": ["crew"],
+    "PATCH/employee/fired_employee": ["hr"],
+    "GET/employee/employee_id": ["hr", "supervisor"],
+    "GET/employee/employees":  ["manager", "hr", "supervisor"],
+
+  },
+  "checkIdRoutes": [
+    "GET/employee/employee_id",
+    "PATCH/employee/password",
+    "PATCH/employee"
+  ]
+}
