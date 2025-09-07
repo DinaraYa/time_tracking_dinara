@@ -6,10 +6,6 @@ export type EmployeeDto = {
     firstName: string,
     lastName: string,
     password: string,
-    //roles: string,
-    birthdate: string,
-    hireDate: string,
-    fireDate: null
 }
 
 export type Employee ={
@@ -17,23 +13,26 @@ export type Employee ={
     firstName: string,
     lastName: string,
     passHash: string,
-    roles: Roles[],
-    birthdate: string,
-    hireDate: string,
-    fireDate: null
+    table_num: string,
+    roles: Roles
 }
 
-type WorkPeriod ={
-    hireDate: string,
-    fireDate: string
-}
+// type WorkPeriod ={
+//     hireDate: string,
+//     fireDate: string
+// }
 
 export type SavedFiredEmployee = {
     _id: string,
     firstName: string,
     lastName: string,
-    passHash: string,
-    roles: Roles[],
-    birthdate: string,
-    workPeriods: WorkPeriod[];
+    table_num: string,
+    // birthdate: string,
+    //workPeriods: WorkPeriod[];
+    fireDate: string
+}
+
+export type UpdateEmployeeDto = {
+    firstName: string,
+    lastName: string,
 }

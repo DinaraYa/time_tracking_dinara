@@ -2,7 +2,9 @@
 {
   "port":3771,
   "skipRoutes":[
+    "POST/employee",
     "POST/employee/login"
+
   ],
 
   "pathRoles":{
@@ -13,7 +15,7 @@
     "PATCH/employee/fired_employee": ["hr"],
     "GET/employee/employee_id": ["hr", "supervisor"],
     "GET/employee/employees":  ["manager", "hr", "supervisor"],
-
+    "DELETE/employee": ["hr"]
   },
   "checkIdRoutes": [
     "GET/employee/employee_id",

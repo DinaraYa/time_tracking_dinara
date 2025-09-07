@@ -4,11 +4,8 @@ import morgan from 'morgan';
 import * as fs from "node:fs";
 import dotenv from 'dotenv';
 import {errorHandler} from "./errorHandler/errorHandler.js";
-import {employeeRouter} from "./routes/employeeRouter.js";
-import {authenticate, skipRoutes} from "./middleware/authentication.js";
-import {authorize, checkAccountById} from "./middleware/authorization.js";
-import {Roles} from "./utils/libTypes.js";
-import {employeeServiceMongo} from "./services/EmployeeServiceImplMongo.js";
+import {accountsRouter} from "./routes/accountsRouter.js";
+
 
 export const launchServer = () => {
     // ==================== load environments ====================
@@ -22,15 +19,17 @@ export const launchServer = () => {
     app.listen(configuration.port, () => console.log(`Server runs http://localhost:${configuration.port}`));
     const logStream = fs.createWriteStream('access.log', { flags: 'a' });
 
-    // ===================== Middleware ===================
-    app.use(authenticate(employeeServiceMongo));
-    app.use(skipRoutes(configuration.skipRoutes));
-    app.use(authorize(configuration.pathRoles as Record<string, Roles[]>));
+    // ================= SecurityMiddleware ================
+
+    // ===================== Middlewares ===================
+
+    // app.use(authenticate(employeeServiceMongo));
+    // app.use(skipRoutes(configuration.skipRoutes));
+    // app.use(authorize(configuration.pathRoles as Record<string, Roles[]>));
 
     app.use(express.json());
 
-    app.use(checkAccountById(configuration.checkIdRoutes));
-
+    //app.use(checkAccountById(configuration.checkIdRoutes));
 
 
     app.use(morgan('dev')); // пишем в консоль
@@ -42,7 +41,7 @@ export const launchServer = () => {
 
     // ===================== Router ===================
 
-    app.use('/employee', employeeRouter)
+    app.use('/accounts', accountsRouter)
 
 
     app.use((req, res) => {

@@ -1,9 +1,8 @@
 import {Request, Response} from "express";
 
-import {checkReaderId, convertEmployeeDtoToEmployee} from "../utils/tools.js";
+import {convertEmployeeDtoToEmployee} from "../utils/tools.js";
 import { employeeServiceMongo as service} from "../services/EmployeeServiceImplMongo.js";
-import {Roles} from "../utils/libTypes.js";
-import {Employee, EmployeeDto} from "../model/Employee.js";
+import {Employee, UpdateEmployeeDto} from "../model/Employee.js";
 
 
 
@@ -23,21 +22,17 @@ export const fireEmployee = async (req: Request, res: Response) => {
 }
 
 
-// export const updateEmployee = async (req: Request, res: Response) => {
-//     const body = req.body;
-//     const _id = checkReaderId(req.query.id as string)
-//     const dto:EmployeeDto = {...body, id: _id, password:""};
-//     const updEmployee = convertEmployeeDtoToEmployee(dto);
-//     const updAccount = await service.updateEmployee(_id, updEmployee);
-//     res.json(updAccount);
-// }
+export const updateEmployee = async (req: Request, res: Response) => {
+    const body = req.body;
+    const _id = req.query.id as string;
+    const result = await service.updateEmployee(_id, body as UpdateEmployeeDto);
+    res.json(result);
+}
 
 export const changePassword= async (req: Request, res: Response) => {
     const {id, newPassword} = req.body;
     console.log("Controller " + id);
     console.log(" newPass " + newPassword)
-    const _id = checkReaderId(id);
-    console.log("Controller " + _id );
     await service.changePassword(id, newPassword);
     res.send("Password changed");
 }
@@ -56,19 +51,21 @@ export const getAllEmployees= async (req: Request, res: Response) => {
 }
 
 
-// export const setRole = async (req: Request, res: Response) => {
-//     const id = checkReaderId(req.query.id as string);
-//     const newRoles = req.body as Roles[];
-//     const employeeWithNewRoles = await service.setRole(id, newRoles);
-//     res.json(employeeWithNewRoles)
-// }
-
-
-
-export const login = async (req: Request, res: Response) => {
-    const result = await service.login({userId: String(checkReaderId(req.body.id)), password: req.body.password});
+export const setRole = async (req: Request, res: Response) => {
+    const id = req.query.id as string;
+    const newRoles = req.query.newRole as string;
+    console.log("Controller " + id);
+    console.log(" newRoles " + newRoles);
+    const result = await service.setRole(id, newRoles);
     res.json(result);
 }
+
+
+
+// export const login = async (req: Request, res: Response) => {
+//     const result = await service.login({userId: req.body.id, password: req.body.password});
+//     res.json(result);
+// }
 
 
 
