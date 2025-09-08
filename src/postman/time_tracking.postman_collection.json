@@ -1,0 +1,349 @@
+{
+	"info": {
+		"_postman_id": "5b79483a-ae6f-4bfd-9105-cae5b9bac449",
+		"name": "time_tracking",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "46848158",
+		"_collection_link": "https://java-27-30-7343.postman.co/workspace/dinara~3cef8b3e-6c65-4b10-b8e2-f0803ad8c9c2/collection/46848158-5b79483a-ae6f-4bfd-9105-cae5b9bac449?action=share&source=collection_link&creator=46848158"
+	},
+	"item": [
+		{
+			"name": "hireEmployee",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"id\": \"112345678\",\n   \"firstName\": \"Jhon\",\n   \"lastName\": \"Smith\",\n   \"password\": \"12345678\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3771/accounts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3771",
+					"path": [
+						"accounts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getEmployeeById",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"id\": \"123456789\",\n   \"firstName\": \"Leo\",\n   \"lastName\": \"Kim\",\n   \"password\": \"12345678\",\n   \"birthdate\": \"1988-08-02\",\n   \"hireDate\": \"2023-09-09\",\n   \"fireDate\": \"2025-01-09\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3771/accounts/employee?id=123456789",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3771",
+					"path": [
+						"accounts",
+						"employee"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "123456789"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateEmployee",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstName\": \"Jhon\",\n    \"lastName\": \"Karter\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3771/accounts?id=123456789",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3771",
+					"path": [
+						"accounts"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "123456789"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "changePassword",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": \"123456789\",\n    \"newPassword\": \"87654321\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3771/accounts/password",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3771",
+					"path": [
+						"accounts",
+						"password"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "setRole",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3771/accounts/roles?id=123456789&newRole=hr",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3771",
+					"path": [
+						"accounts",
+						"roles"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "123456789"
+						},
+						{
+							"key": "newRole",
+							"value": "hr"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "fireEmployee",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3771/accounts?id=112345678",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3771",
+					"path": [
+						"accounts"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "112345678"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getAllEmployees",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3771/accounts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3771",
+					"path": [
+						"accounts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "startShift",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3771/shifts?table_num=963cce53-5775-4d8c-acc7-515949506570",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3771",
+					"path": [
+						"shifts"
+					],
+					"query": [
+						{
+							"key": "table_num",
+							"value": "963cce53-5775-4d8c-acc7-515949506570"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "takeBreak",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3771/shifts/break?table_num=f70f2068-814d-4590-9c65-538ef03aba3b&min=15",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3771",
+					"path": [
+						"shifts",
+						"break"
+					],
+					"query": [
+						{
+							"key": "table_num",
+							"value": "f70f2068-814d-4590-9c65-538ef03aba3b"
+						},
+						{
+							"key": "min",
+							"value": "15"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getCurrentShiftStaff",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3771/shifts/current",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3771",
+					"path": [
+						"shifts",
+						"current"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "correctShift",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"table_num_crew\": \"963cce53-5775-4d8c-acc7-515949506570\",\n    \"table_num_mng\": \"dd6b545c-0533-462f-801d-b84d401ae3a5\",\n    \"start\": \"09/08/2025 09:00\",\n    \"finish\": \"09/08/2025 17:00\",\n    \"date\": \"09/09/2025\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3771/shifts/correct",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3771",
+					"path": [
+						"shifts",
+						"correct"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "finishShift",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3771/shifts?table_num=f70f2068-814d-4590-9c65-538ef03aba3b",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3771",
+					"path": [
+						"shifts"
+					],
+					"query": [
+						{
+							"key": "table_num",
+							"value": "f70f2068-814d-4590-9c65-538ef03aba3b"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

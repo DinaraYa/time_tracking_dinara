@@ -21,7 +21,6 @@ export const fireEmployee = async (req: Request, res: Response) => {
 
 }
 
-
 export const updateEmployee = async (req: Request, res: Response) => {
     const body = req.body;
     const _id = req.query.id as string;

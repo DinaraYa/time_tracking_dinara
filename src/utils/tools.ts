@@ -11,6 +11,10 @@ function generateTabNumber() {
     return uuidv4();
 }
 
+export function generateShiftId() {
+    return uuidv4();
+}
+
 export const convertEmployeeDtoToEmployee = (dto: EmployeeDto): Employee => {
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(dto.password, salt);

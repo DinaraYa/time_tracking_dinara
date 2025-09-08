@@ -5,6 +5,7 @@ import * as fs from "node:fs";
 import dotenv from 'dotenv';
 import {errorHandler} from "./errorHandler/errorHandler.js";
 import {accountsRouter} from "./routes/accountsRouter.js";
+import {shiftsRouter} from "./routes/shiftsRouter.js";
 
 
 export const launchServer = () => {
@@ -41,7 +42,8 @@ export const launchServer = () => {
 
     // ===================== Router ===================
 
-    app.use('/accounts', accountsRouter)
+    app.use('/accounts', accountsRouter);
+    app.use('/shifts', shiftsRouter);
 
 
     app.use((req, res) => {
