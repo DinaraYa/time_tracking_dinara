@@ -54,7 +54,7 @@ export type CrewShift = {
 
 export type Shift ={
     table_num: string,
-    time: number
+    time: string
 }
 
 

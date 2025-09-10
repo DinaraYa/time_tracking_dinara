@@ -21,5 +21,6 @@
     "GET/employee/employee_id",
     "PATCH/employee/password",
     "PATCH/employee"
-  ]
+  ],
+  "logLevel": "info"
 }
