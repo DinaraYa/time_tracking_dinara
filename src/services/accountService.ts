@@ -3,7 +3,7 @@ import {LoginPassType} from "../utils/libTypes.js";
 import {Employee, EmployeeDto, SavedFiredEmployee, UpdateEmployeeDto} from "../model/Employee.js";
 
 
-export interface EmployeeService {
+export interface AccountService {
     hireEmployee: (employee: Employee) => Promise<Employee>;
     fireEmployee: (empId:string) => Promise<SavedFiredEmployee>;
     updateEmployee: (empId:string , employee: UpdateEmployeeDto) => Promise<Employee>;

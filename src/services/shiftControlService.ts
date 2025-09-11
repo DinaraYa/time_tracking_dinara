@@ -1,4 +1,4 @@
-import {CorrectShift, CurrentCrewShift, Shift} from "../model/Employee.js";
+import {CorrectShift, CurrentCrewShift, Shift} from "../model/Shift.js";
 
 
 export interface ShiftControlService {

@@ -1,7 +1,7 @@
 import {Request, Response} from "express";
 
 import {convertEmployeeDtoToEmployee} from "../utils/tools.js";
-import { employeeServiceMongo as service} from "../services/EmployeeServiceImplMongo.js";
+import { accountServiceMongo as service} from "../services/AccountServiceImplMongo.js";
 import {Employee, UpdateEmployeeDto} from "../model/Employee.js";
 
 

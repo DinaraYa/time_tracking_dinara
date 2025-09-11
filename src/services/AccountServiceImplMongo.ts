@@ -1,4 +1,4 @@
-import { EmployeeService} from "./employeeService.js";
+import { AccountService} from "./accountService.js";
 import {HttpError} from "../errorHandler/HttpError.js";
 import bcrypt from "bcrypt";
 import {Employee, SavedFiredEmployee, UpdateEmployeeDto} from "../model/Employee.js";
@@ -7,7 +7,7 @@ import {EmployeeModel, firedEmployeeModel} from "../model/EmployeeMongooseModel.
 import {checkRole} from "../utils/tools.js";
 
 
-export class EmployeeServiceImplMongo implements EmployeeService{
+export class AccountServiceImplMongo implements AccountService{
 
    async hireEmployee(employee: Employee): Promise<Employee> {
        const isExist = await EmployeeModel.findById(employee._id).exec();
@@ -61,8 +61,8 @@ export class EmployeeServiceImplMongo implements EmployeeService{
     }
 
     async getEmployeeById(id: string): Promise<Employee> {
-        const employee = await EmployeeModel.findById(id).lean<Employee>().exec();
-        if (!employee) throw new HttpError(404, "Reader not found");
+        const employee = await EmployeeModel.findById(id);
+        if (!employee) throw new HttpError(404, `Employee with id ${id} not found`);
        return employee
     }
 
@@ -93,4 +93,4 @@ export class EmployeeServiceImplMongo implements EmployeeService{
 
 }
 
-export const employeeServiceMongo = new EmployeeServiceImplMongo();
+export const accountServiceMongo = new AccountServiceImplMongo();

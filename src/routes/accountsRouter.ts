@@ -1,5 +1,5 @@
 import express from "express";
-import * as controller from "../controllers/employeeController.js"
+import * as controller from "../controllers/accountController.js"
 import {validationBody} from "../validation/validation.js";
 import {
     ChangePasswordDtoSchema,

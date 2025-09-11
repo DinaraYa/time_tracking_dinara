@@ -1,4 +1,4 @@
-// import {EmployeeService} from "../services/employeeService.js";
+// import {AccountService} from "../services/employeeService.js";
 // import {NextFunction, Request, Response} from "express";
 // import bcrypt from "bcrypt";
 // import {HttpError} from "../errorHandler/HttpError.js";
@@ -10,7 +10,7 @@
 // const BEARER = "Bearer ";
 //
 //
-// async function getBasicAuth(authHeader: string, service: EmployeeService, req: AuthRequest, res: Response) {
+// async function getBasicAuth(authHeader: string, service: AccountService, req: AuthRequest, res: Response) {
 //
 //     const auth = Buffer.from(authHeader.substring(BASIC.length), "base64").toString("ascii");
 //     console.log(auth);
@@ -58,7 +58,7 @@
 //
 // }
 //
-// export const authenticate = (service: EmployeeService) => {
+// export const authenticate = (service: AccountService) => {
 //     return async (req: Request, res: Response, next: NextFunction) => {
 //         const autHeader = req.header('Authorization');
 //         console.log(autHeader);

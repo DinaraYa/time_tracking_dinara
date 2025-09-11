@@ -1,9 +1,10 @@
 import {ShiftControlService} from "./shiftControlService.js";
-import {CorrectShift, CurrentCrewShift, Shift} from "../model/Employee.js";
-import {CrewShiftModel, EmployeeModel} from "../model/EmployeeMongooseModel.js";
+import {CorrectShift, CurrentCrewShift, Shift} from "../model/Shift.js";
+import { EmployeeModel} from "../model/EmployeeMongooseModel.js";
+import {CrewShiftModel} from "../model/ShiftMongooseModel.js"
 import {HttpError} from "../errorHandler/HttpError.js";
-import {generateShiftId} from "../utils/tools.js"
 import {logger} from "../Logger/winston.js";
+import {checkBreak, checkUnusedBreak} from "../utils/tools.js";
 
 
 export class ShiftControlServiceImplMongo implements ShiftControlService {
@@ -19,14 +20,13 @@ export class ShiftControlServiceImplMongo implements ShiftControlService {
             logger.error(`${new Date().toISOString()} => Previous shift not closed, 409 Conflict`);
             throw new HttpError(409, "Forbidden to start shift");
         }
-        const time = 8 * 60 * 60 * 1000;
+        const time = 8 * 60 * 1000;
         if (lastShift && lastShift.finishShift) {
             const currTime = new Date().getTime();
             const different = currTime - lastShift.finishShift;
             if (different < time) throw new HttpError(409, "Forbidden to start shift")
         }
         const newShift = await CrewShiftModel.create({
-            shiftId: generateShiftId(),
             role: "crew",
             startShift: Date.now(),
             finishShift: null,
@@ -36,8 +36,7 @@ export class ShiftControlServiceImplMongo implements ShiftControlService {
             correct: null,
             monthHours: lastShift ? lastShift.monthHours : 0
         });
-
-        return {table_num, time: new Date(newShift.startShift).toISOString()} as Shift;
+        return {table_num, time: new Date(newShift.startShift).toTimeString()} as Shift;
     }
 
     async finishShift(table_num: string): Promise<Shift> {
@@ -49,21 +48,17 @@ export class ShiftControlServiceImplMongo implements ShiftControlService {
             await CrewShiftModel.findOne({table_num: table_num}).sort({startShift: -1}).exec();
         if (!lastShift) throw new HttpError(409, "Forbidden to finish shift");
         if (lastShift && lastShift.finishShift !== null) throw new HttpError(409, "The shift has already been added.");
-        const hour = 1000 * 60 * 60;
+        const minutes = 1000 * 60;
         lastShift.finishShift = Date.now();
-        lastShift.shiftDuration = (lastShift.finishShift - lastShift.startShift) / hour;
+        lastShift.shiftDuration = (lastShift.finishShift - lastShift.startShift) / minutes;
         lastShift.monthHours += lastShift.shiftDuration;
 
-        if (lastShift.breaks === 0 && lastShift.shiftDuration >= 6 && lastShift.shiftDuration <= 8) {
-            lastShift.shiftDuration += 0.5
-        } else if (lastShift.breaks === 0 && lastShift.shiftDuration >= 4 && lastShift.shiftDuration < 6) {
-            lastShift.shiftDuration += 0.25
-        } else if (lastShift.breaks === 0 && lastShift.shiftDuration < 4) {
-            lastShift.shiftDuration += 0
-        }
-
+        const breakTime = checkUnusedBreak(lastShift.breaks, lastShift.shiftDuration);
+        console.log(breakTime)
+        lastShift.shiftDuration += breakTime;
+        lastShift.monthHours += breakTime;
         await lastShift.save();
-        return {table_num, time: new Date(lastShift.finishShift).toISOString()} as Shift;
+        return {table_num, time: new Date(lastShift.finishShift).toTimeString()} as Shift;
     }
 
 
@@ -77,17 +72,14 @@ export class ShiftControlServiceImplMongo implements ShiftControlService {
         if (!shift) throw new HttpError(409, "Forbidden to take break");
 
         const currentTime = Date.now();
-        const hour = 1000 * 60 * 60;
-        const shiftDuration = (currentTime - shift.startShift) / hour;
+        const minutes = 1000 * 60;
+        const shiftDuration = (currentTime - shift.startShift) / minutes;
 
-        if (shift && shift.finishShift === null) {
-            if (shiftDuration < 4) throw new HttpError(409, "Forbidden to take break");
-            else if (shiftDuration >= 4 && shiftDuration < 6) {
-                shift.breaks += 0.25
-            } else if (shiftDuration >= 6 && shiftDuration <= 8) {
-                shift.breaks += 0.5
-            }
+        if (!shift || shift.finishShift !== null) {
+            throw new HttpError(409, "Cannot take break on closed shift");
         }
+        const breakTime = checkBreak (shiftDuration);
+        shift.breaks += breakTime;
         await shift.save();
     }
 
@@ -98,13 +90,13 @@ export class ShiftControlServiceImplMongo implements ShiftControlService {
         const shift =
             await CrewShiftModel.findOne({table_num: table_num_crew}).sort({startShift: -1}).exec();
         console.log("shift ", shift);
-        const hour = 1000 * 60 * 60;
+        const minutes = 1000 * 60;
         if (!shift) throw new HttpError(404, "Shift not found");
-        const difTime = (Date.parse(finish) - Date.parse(start)) / hour;
+        const difTime = (Date.parse(finish) - Date.parse(start)) / minutes;
         if (difTime > 8) throw new HttpError(404, "Shift must not exceed more 8 hour");
         shift.startShift = Date.parse(start);
         shift.finishShift = Date.parse(finish);
-        shift.shiftDuration = (Date.parse(finish) - Date.parse(start)) / hour;
+        shift.shiftDuration = (Date.parse(finish) - Date.parse(start)) / minutes;
         shift.monthHours += shift.shiftDuration;
         shift.correct = table_num_mng;
         shift.correctDate = Date.parse(date);
@@ -115,20 +107,19 @@ export class ShiftControlServiceImplMongo implements ShiftControlService {
     async getCurrentShiftStaff(): Promise<CurrentCrewShift[]> {
         const shifts =
             await CrewShiftModel.find({finishShift: null, role: "crew"})
-                .select("shiftId startShift role table_num breaks").exec();
+                .select("_id startShift role table_num breaks").exec();
 
-        const hour = 1000 * 60 * 60;
+        const minutes = 1000 * 60;
         const currentCrewShift: CurrentCrewShift[] = shifts.map(shift => ({
-            shiftId: shift.shiftId,
+            _id: shift.id,
             role: shift.role as "crew",
             table_num: shift.table_num,
             startShift: shift.startShift,
-            shiftDuration: (Date.now() - shift.startShift) / hour,
+            shiftDuration: (Date.now() - shift.startShift) / minutes,
             breaks: shift.breaks
         }));
         return currentCrewShift;
     }
-
 }
 
 

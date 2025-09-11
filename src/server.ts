@@ -50,14 +50,14 @@ export const launchServer = () => {
         res.status(404).send("Page not found")
     })
 
-    //  function errorHandler(err: any, req: Request, res: Response, next: NextFunction) {
-    //     console.error("Server error: ", err);   // вот тут будет полный объект ошибки
-    //     // @ts-ignore
-    //     res.status(500).json({ message: "Internal Server Error", error: err.message });
-    // }
+     function errorHandler(err: any, req: Request, res: Response, next: NextFunction) {
+        console.error("Server error: ", err);   // вот тут будет полный объект ошибки
+        // @ts-ignore
+        res.status(500).json({ message: "Internal Server Error", error: err.message });
+    }
 
     //================ ErrorHandler ================
 
-    app.use(errorHandler);
+    //app.use(errorHandler);
 
 }

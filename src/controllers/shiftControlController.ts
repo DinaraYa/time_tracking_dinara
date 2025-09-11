@@ -1,7 +1,8 @@
-import {CurrentCrewShift, Shift} from "../model/Employee.js";
+import {CurrentCrewShift, Shift} from "../model/Shift.js";
+
 import e, {Request, Response} from "express";
 import {HttpError} from "../errorHandler/HttpError.js";
-import {startShiftControlMongo, startShiftControlMongo as service} from "../services/ShiftControlServiceImplMongo.js";
+import {startShiftControlMongo as service} from "../services/ShiftControlServiceImplMongo.js";
 
 export const startShift = async (req: Request, res: Response) => {
     const table_num = req.query.table_num
