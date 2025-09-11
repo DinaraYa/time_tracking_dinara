@@ -31,7 +31,7 @@ export const checkRole = (role:string) => {
 }
 
 
-export const  checkBreak = (time:number, breakTime:number )=> {
+export const  checkBreak = (time:number)=> {
     let takeB: number = 0
         if (time < 240) throw new HttpError(409, "Forbidden to take break");
         else if (time >= 240 && time < 360) {
