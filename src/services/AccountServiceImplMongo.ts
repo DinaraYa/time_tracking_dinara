@@ -1,69 +1,80 @@
-import { AccountService} from "./accountService.js";
+import {AccountService} from "./accountService.js";
 import {HttpError} from "../errorHandler/HttpError.js";
 import bcrypt from "bcrypt";
 import {Employee, SavedFiredEmployee, UpdateEmployeeDto} from "../model/Employee.js";
 import {EmployeeModel, firedEmployeeModel} from "../model/EmployeeMongooseModel.js";
 // import {LoginPassType, Roles} from "../utils/libTypes.js";
 import {checkRole} from "../utils/tools.js";
+import {logger} from "../Logger/winston.js";
 
 
-export class AccountServiceImplMongo implements AccountService{
+export class AccountServiceImplMongo implements AccountService {
 
-   async hireEmployee(employee: Employee): Promise<Employee> {
-       const isExist = await EmployeeModel.findById(employee._id).exec();
-       if(isExist) throw new HttpError(404, "Employee already exists");
+    async hireEmployee(employee: Employee): Promise<Employee> {
+        const isExist = await EmployeeModel.findById(employee._id).exec();
+        if (isExist) {
+            logger.warn(`[hireEmployee] Employee with  ${employee._id} already exists`)
+            throw new HttpError(409, "Employee already exists");
+        }
+        const firedEmployee = await firedEmployeeModel.findById(employee._id).exec();
+        if (firedEmployee) {
+            logger.warn(`[hireEmployee] Employee with ${employee._id} was fired ${firedEmployee.fireDate}`)
+            console.log(`Employee with ${employee._id} was fired`);
+        }
+        const newEmployee = new EmployeeModel(employee);
+        await newEmployee.save();
+        logger.info(`[hireEmployee] Employee with ${employee._id} was added`);
+        return newEmployee;
+    }
 
-       const firedEmployee = await firedEmployeeModel.findById(employee._id).exec();
-       if(firedEmployee) console.log(`Employee with ${employee._id} was fired`);
-
-       const newEmployee = new EmployeeModel(employee);
-       await newEmployee.save();
-       return employee;
-   }
-
-    async fireEmployee(empId:string): Promise<SavedFiredEmployee> {
-       const employee = await EmployeeModel.findById(empId).exec();
-        console.log("employee ", employee);
-       if (!employee) throw new HttpError(404, "Employee not found");
-
-       const fireDate = {
-           ...employee.toObject(),
-           fireDate: new Date().toDateString()
-       }
-        console.log('fireDate ', fireDate);
-
-      const firedEmployee = new firedEmployeeModel(fireDate);
-       await firedEmployee.save();
-        console.log('firedEmployee ', firedEmployee);
-
-       await EmployeeModel.findByIdAndDelete(empId).exec();
-       return firedEmployee as SavedFiredEmployee;
+    async fireEmployee(empId: string): Promise<SavedFiredEmployee> {
+        const employee = await EmployeeModel.findById(empId).exec();
+        if (!employee) {
+            logger.warn(`[fireEmployee] Employee with  ${empId} not found`)
+            throw new HttpError(404, "Employee not found");
+        }
+        const fireDate = {
+            ...employee.toObject(),
+            fireDate: new Date().toDateString()
+        }
+        const firedEmployee = new firedEmployeeModel(fireDate);
+        await firedEmployee.save();
+        await EmployeeModel.findByIdAndDelete(empId).exec();
+        logger.info(`[fireEmployee] Employee with ${empId} was fired and and moved to firedEmployee_collection`);
+        return firedEmployee as SavedFiredEmployee;
     }
 
 
-   async updateEmployee(empId: string , employee: UpdateEmployeeDto): Promise<Employee> {
-       const result =
-           await EmployeeModel.findByIdAndUpdate(empId, {
-               firstName: employee.firstName,
-               lastName: employee.lastName},{new:true}).exec();
-       if(!result) throw new HttpError(404, "Account not found");
-       return result;
-   }
+    async updateEmployee(empId: string, employee: UpdateEmployeeDto): Promise<Employee> {
+        const result =
+            await EmployeeModel.findByIdAndUpdate(empId, {
+                firstName: employee.firstName,
+                lastName: employee.lastName
+            }, {new: true}).exec();
+        if (!result) {
+            logger.warn(`[updateEmployee] Employee with  ${empId} not found`);
+            throw new HttpError(404, "Employee not found");
+        }
+        logger.info(`[updateEmployee] Employee ${empId} updated: firstName=${employee.firstName}, lastName=${employee.lastName}\``);
+        return result;
+    }
 
-    async changePassword(id: string, newPassword: string ): Promise<void> {
-        console.log(id, newPassword);
+    async changePassword(id: string, newPassword: string): Promise<void> {
         const employee = await EmployeeModel.findById(id);
-        console.log(employee);
-        if (!employee) throw new HttpError(404, "Account not found");
+        if (!employee) {
+            logger.warn(`[changePassword] Account with  ${id} not found`);
+            throw new HttpError(404, "Account not found");
+        }
         const newHash = bcrypt.hashSync(newPassword, 10);
         employee.passHash = newHash;
+        logger.info(`[changePassword] Password of employee with ${id} was changed`);
         await employee.save();
     }
 
     async getEmployeeById(id: string): Promise<Employee> {
         const employee = await EmployeeModel.findById(id);
         if (!employee) throw new HttpError(404, `Employee with id ${id} not found`);
-       return employee
+        return employee
     }
 
     async getAllEmployees(): Promise<SavedFiredEmployee[]> {
@@ -73,11 +84,14 @@ export class AccountServiceImplMongo implements AccountService{
 
 
     async setRole(id: string, newRole: string): Promise<Employee> {
-       const role = checkRole(newRole);
-        console.log(id, newRole);
+        const role = checkRole(newRole);
         const result =
-            await EmployeeModel.findByIdAndUpdate(id, {roles : newRole}, {new:true}).exec()
-        if(!result) throw new HttpError(500, "Employee updating failed!");
+            await EmployeeModel.findByIdAndUpdate(id, {roles: newRole}, {new: true}).exec()
+        if (!result) {
+            logger.warn(`[setRole] Attempt to change role for employee ${id} failed`);
+            throw new HttpError(500, "Employee updating failed!");
+        }
+        logger.info(`[setRole] Role of employee ${id} changed to ${newRole}`);
         return result as Employee;
     }
 

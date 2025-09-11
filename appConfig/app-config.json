@@ -22,5 +22,6 @@
     "PATCH/employee/password",
     "PATCH/employee"
   ],
-  "logLevel": "info"
+  "logLevel": "info",
+  "durationOneShift": 28800000
 }

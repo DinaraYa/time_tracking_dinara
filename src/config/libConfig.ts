@@ -14,7 +14,8 @@ export interface AppConfig {
         secret:string,
         exp:string | number
     },
-    logLevel: string
+    logLevel: string,
+    durationOneShift: number
 }
 
 dotenv.config()
