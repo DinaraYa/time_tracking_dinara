@@ -80,3 +80,7 @@
 ::1 - - [11/Sep/2025:22:55:05 +0000] "POST /shifts?table_num=f70f2068-814d-4590-9c65-538ef03aba3b HTTP/1.1" 409 24 "-" "PostmanRuntime/7.46.0"
 ::1 - - [11/Sep/2025:22:55:40 +0000] "POST /shifts?table_num=963cce53-5775-4d8c-acc7-515949506570 HTTP/1.1" 200 102 "-" "PostmanRuntime/7.46.0"
 ::1 - - [11/Sep/2025:22:55:54 +0000] "PATCH /shifts/break?table_num=963cce53-5775-4d8c-acc7-515949506570&min=15 HTTP/1.1" 409 23 "-" "PostmanRuntime/7.46.0"
+::1 - - [18/Sep/2025:09:52:12 +0000] "POST /shifts?table_num=963cce53-5775-4d8c-acc7-515949506570 HTTP/1.1" 409 24 "-" "PostmanRuntime/7.46.0"
+::1 - - [18/Sep/2025:09:53:51 +0000] "PATCH /shifts?table_num=963cce53-5775-4d8c-acc7-515949506570 HTTP/1.1" 200 102 "-" "PostmanRuntime/7.46.0"
+::1 - - [18/Sep/2025:09:54:06 +0000] "POST /shifts?table_num=963cce53-5775-4d8c-acc7-515949506570 HTTP/1.1" 409 24 "-" "PostmanRuntime/7.46.0"
+::1 - - [18/Sep/2025:09:54:30 +0000] "POST /shifts?table_num=f70f2068-814d-4590-9c65-538ef03aba3b HTTP/1.1" 200 102 "-" "PostmanRuntime/7.46.0"

@@ -31,3 +31,195 @@
 {"level":"error","message":"Forbidden to start shift","method":"POST","stack":"Error: Forbidden to start shift\n    at ShiftControlServiceImplMongo.startShift (file:///Users/dinaratylemisova/WebstormProjects/NodeJS/time_tracking_dinara/build/src/services/ShiftControlServiceImplMongo.js:24:23)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async startShift (file:///Users/dinaratylemisova/WebstormProjects/NodeJS/time_tracking_dinara/build/src/controllers/shiftControlController.js:7:20)","status":409,"url":"/shifts?table_num=f70f2068-814d-4590-9c65-538ef03aba3b"}
 {"level":"info","message":"Employee 963cce53-5775-4d8c-acc7-515949506570 started new shift at 1757631340517"}
 {"level":"error","message":"Forbidden to take break","method":"PATCH","stack":"Error: Forbidden to take break\n    at checkBreak (file:///Users/dinaratylemisova/WebstormProjects/NodeJS/time_tracking_dinara/build/src/utils/tools.js:29:15)\n    at ShiftControlServiceImplMongo.takeBreak (file:///Users/dinaratylemisova/WebstormProjects/NodeJS/time_tracking_dinara/build/src/services/ShiftControlServiceImplMongo.js:85:27)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async takeBreak (file:///Users/dinaratylemisova/WebstormProjects/NodeJS/time_tracking_dinara/build/src/controllers/shiftControlController.js:25:20)","status":409,"url":"/shifts/break?table_num=963cce53-5775-4d8c-acc7-515949506570&min=15"}
+{"level":"warn","message":"[hireEmployee] Employee with  123 already exists"}
+{"level":"warn","message":"[hireEmployee] Employee with  123 already exists"}
+{"level":"warn","message":"[hireEmployee] Employee with  123 already exists"}
+{"level":"warn","message":"[hireEmployee] Employee with  123 already exists"}
+{"level":"warn","message":"[hireEmployee] Employee with  123 already exists"}
+{"level":"warn","message":"[hireEmployee] Employee with  123 already exists"}
+{"level":"warn","message":"[hireEmployee] Employee with  123 already exists"}
+{"level":"warn","message":"[hireEmployee] Employee with  123 already exists"}
+{"level":"warn","message":"[hireEmployee] Employee with  123 already exists"}
+{"level":"warn","message":"[hireEmployee] Employee with  123 already exists"}
+{"level":"warn","message":"[hireEmployee] Employee with  123 already exists"}
+{"level":"warn","message":"[hireEmployee] Employee with  123 already exists"}
+{"level":"warn","message":"[hireEmployee] Employee with  123 already exists"}
+{"level":"warn","message":"[hireEmployee] Employee with  123 already exists"}
+{"level":"warn","message":"[hireEmployee] Employee with  123 already exists"}
+{"level":"warn","message":"[hireEmployee] Employee with  123 already exists"}
+{"level":"warn","message":"[hireEmployee] Employee with  123 already exists"}
+{"level":"warn","message":"[hireEmployee] Employee with  123 already exists"}
+{"level":"warn","message":"[hireEmployee] Employee with  123 already exists"}
+{"level":"warn","message":"[hireEmployee] Employee with  123 already exists"}
+{"level":"warn","message":"[hireEmployee] Employee with  123 already exists"}
+{"level":"warn","message":"[hireEmployee] Employee with  123 already exists"}
+{"level":"warn","message":"[hireEmployee] Employee with  123 already exists"}
+{"level":"warn","message":"[hireEmployee] Employee with  123 already exists"}
+{"level":"warn","message":"[hireEmployee] Employee with  123 already exists"}
+{"level":"warn","message":"[hireEmployee] Employee with  123 already exists"}
+{"level":"warn","message":"[hireEmployee] Employee with  123 already exists"}
+{"level":"warn","message":"[hireEmployee] Employee with  123 already exists"}
+{"level":"warn","message":"[hireEmployee] Employee with  123 already exists"}
+{"level":"warn","message":"[hireEmployee] Employee with  123 already exists"}
+{"level":"warn","message":"[hireEmployee] Employee with 123 was fired 2024-05-03"}
+{"level":"warn","message":"[hireEmployee] Employee with  123 already exists"}
+{"level":"warn","message":"[hireEmployee] Employee with 123 was fired 2024-05-03"}
+{"level":"info","message":"[hireEmployee] Employee with 123 was added"}
+{"level":"warn","message":"[hireEmployee] Employee with  123 already exists"}
+{"level":"warn","message":"[hireEmployee] Employee with 123 was fired 2024-05-03"}
+{"level":"info","message":"[hireEmployee] Employee with 123 was added"}
+{"level":"warn","message":"[hireEmployee] Employee with  123 already exists"}
+{"level":"warn","message":"[hireEmployee] Employee with 123 was fired 2024-05-03"}
+{"level":"warn","message":"[hireEmployee] Employee with  123 already exists"}
+{"level":"warn","message":"[hireEmployee] Employee with 123 was fired 2024-05-03"}
+{"level":"info","message":"[hireEmployee] Employee with 123 was added"}
+{"level":"warn","message":"[hireEmployee] Employee with 123 was fired 2024-05-03"}
+{"level":"info","message":"[hireEmployee] Employee with 123 was added"}
+{"level":"warn","message":"[hireEmployee] Employee with  123 already exists"}
+{"level":"warn","message":"[hireEmployee] Employee with 123 was fired 2024-05-03"}
+{"level":"info","message":"[hireEmployee] Employee with 123 was added"}
+{"level":"info","message":"[hireEmployee] Employee with 123 was added"}
+{"level":"warn","message":"[hireEmployee] Employee with  123 already exists"}
+{"level":"warn","message":"[hireEmployee] Employee with  123 already exists"}
+{"level":"info","message":"[hireEmployee] Employee with 123 was added"}
+{"level":"info","message":"[hireEmployee] Employee with 123 was added"}
+{"level":"warn","message":"[hireEmployee] Employee with  123 already exists"}
+{"level":"info","message":"[hireEmployee] Employee with 123 was added"}
+{"level":"warn","message":"[hireEmployee] Employee with  123 already exists"}
+{"level":"info","message":"[hireEmployee] Employee with 123 was added"}
+{"level":"info","message":"[hireEmployee] Employee with 123 was added"}
+{"level":"warn","message":"[hireEmployee] Employee with  123 already exists"}
+{"level":"info","message":"[hireEmployee] Employee with 123 was added"}
+{"level":"warn","message":"[hireEmployee] Employee with  123 already exists"}
+{"level":"info","message":"[hireEmployee] Employee with 123 was added"}
+{"level":"warn","message":"[hireEmployee] Employee with  123 already exists"}
+{"level":"info","message":"[hireEmployee] Employee with 123 was added"}
+{"level":"warn","message":"[hireEmployee] Employee with  123 already exists"}
+{"level":"info","message":"[hireEmployee] Employee with 123 was added"}
+{"level":"warn","message":"[hireEmployee] Employee with  123 already exists"}
+{"level":"info","message":"[hireEmployee] Employee with 123 was added"}
+{"level":"info","message":"[hireEmployee] Employee with 123 was added"}
+{"level":"info","message":"[hireEmployee] Employee with 123 was added"}
+{"level":"info","message":"[hireEmployee] Employee with 123 was added"}
+{"level":"warn","message":"[hireEmployee] Employee with  123 already exists"}
+{"level":"info","message":"[hireEmployee] Employee with 123 was added"}
+{"level":"warn","message":"[fireEmployee] Employee with  1234 not found"}
+{"level":"warn","message":"[fireEmployee] Employee with  1234 not found"}
+{"level":"warn","message":"[fireEmployee] Employee with  1234 not found"}
+{"level":"warn","message":"[fireEmployee] Employee with  1234 not found"}
+{"level":"warn","message":"[fireEmployee] Employee with  1234 not found"}
+{"level":"warn","message":"[fireEmployee] Employee with  1234 not found"}
+{"level":"warn","message":"[fireEmployee] Employee with  1234 not found"}
+{"level":"warn","message":"[fireEmployee] Employee with  1234 not found"}
+{"level":"warn","message":"[fireEmployee] Employee with  1234 not found"}
+{"level":"warn","message":"[fireEmployee] Employee with  1234 not found"}
+{"level":"info","message":"[fireEmployee] Employee with 123 was fired and and moved to firedEmployee_collection"}
+{"level":"info","message":"[fireEmployee] Employee with 123 was fired and and moved to firedEmployee_collection"}
+{"level":"info","message":"[fireEmployee] Employee with 123 was fired and and moved to firedEmployee_collection"}
+{"level":"info","message":"[fireEmployee] Employee with 123 was fired and and moved to firedEmployee_collection"}
+{"level":"info","message":"[fireEmployee] Employee with 123 was fired and and moved to firedEmployee_collection"}
+{"level":"info","message":"[fireEmployee] Employee with 123 was fired and and moved to firedEmployee_collection"}
+{"level":"info","message":"[fireEmployee] Employee with 123 was fired and and moved to firedEmployee_collection"}
+{"level":"info","message":"[fireEmployee] Employee with 123 was fired and and moved to firedEmployee_collection"}
+{"level":"info","message":"[fireEmployee] Employee with 123 was fired and and moved to firedEmployee_collection"}
+{"level":"info","message":"[fireEmployee] Employee with 123 was fired and and moved to firedEmployee_collection"}
+{"level":"warn","message":"[fireEmployee] Employee with  1234 not found"}
+{"level":"warn","message":"[fireEmployee] Employee with  1234 not found"}
+{"level":"info","message":"[fireEmployee] Employee with 123 was fired and and moved to firedEmployee_collection"}
+{"level":"info","message":"[fireEmployee] Employee with 123 was fired and and moved to firedEmployee_collection"}
+{"level":"info","message":"[fireEmployee] Employee with 123 was fired and and moved to firedEmployee_collection"}
+{"level":"info","message":"[fireEmployee] Employee with 123 was fired and and moved to firedEmployee_collection"}
+{"level":"info","message":"[fireEmployee] Employee with 123 was fired and and moved to firedEmployee_collection"}
+{"level":"info","message":"[fireEmployee] Employee with 123 was fired and and moved to firedEmployee_collection"}
+{"level":"info","message":"[fireEmployee] Employee with 123 was fired and and moved to firedEmployee_collection"}
+{"level":"info","message":"[fireEmployee] Employee with 123 was fired and and moved to firedEmployee_collection"}
+{"level":"info","message":"[fireEmployee] Employee with 123 was fired and and moved to firedEmployee_collection"}
+{"level":"warn","message":"[fireEmployee] Employee with  1234 not found"}
+{"level":"warn","message":"[fireEmployee] Employee with  1234 not found"}
+{"level":"info","message":"[fireEmployee] Employee with 123 was fired and and moved to firedEmployee_collection"}
+{"level":"info","message":"[fireEmployee] Employee with 1234 was fired and and moved to firedEmployee_collection"}
+{"level":"info","message":"[fireEmployee] Employee with 123 was fired and and moved to firedEmployee_collection"}
+{"level":"info","message":"[fireEmployee] Employee with 123 was fired and and moved to firedEmployee_collection"}
+{"level":"info","message":"[fireEmployee] Employee with 1234 was fired and and moved to firedEmployee_collection"}
+{"level":"info","message":"[fireEmployee] Employee with 123 was fired and and moved to firedEmployee_collection"}
+{"level":"info","message":"[fireEmployee] Employee with 123 was fired and and moved to firedEmployee_collection"}
+{"level":"info","message":"[hireEmployee] Employee with 123 was added"}
+{"level":"warn","message":"[hireEmployee] Employee with  123 already exists"}
+{"level":"info","message":"[hireEmployee] Employee with 123 was added"}
+{"level":"info","message":"[fireEmployee] Employee with 1234 was fired and and moved to firedEmployee_collection"}
+{"level":"info","message":"[fireEmployee] Employee with 123 was fired and and moved to firedEmployee_collection"}
+{"level":"info","message":"[fireEmployee] Employee with 1234 was fired and and moved to firedEmployee_collection"}
+{"level":"warn","message":"[fireEmployee] Employee with  1234 not found"}
+{"level":"warn","message":"[fireEmployee] Employee with  1234 not found"}
+{"level":"info","message":"[hireEmployee] Employee with 123 was added"}
+{"level":"warn","message":"[fireEmployee] Employee with  1234 not found"}
+{"level":"warn","message":"[fireEmployee] Employee with  1234 not found"}
+{"level":"warn","message":"[fireEmployee] Employee with  1234 not found"}
+{"level":"info","message":"[fireEmployee] Employee with 123 was fired and and moved to firedEmployee_collection"}
+{"level":"info","message":"[fireEmployee] Employee with 123 was fired and and moved to firedEmployee_collection"}
+{"level":"info","message":"[fireEmployee] Employee with 1234 was fired and and moved to firedEmployee_collection"}
+{"level":"info","message":"[fireEmployee] Employee with 123 was fired and and moved to firedEmployee_collection"}
+{"level":"info","message":"[fireEmployee] Employee with 1234 was fired and and moved to firedEmployee_collection"}
+{"level":"info","message":"[fireEmployee] Employee with 123 was fired and and moved to firedEmployee_collection"}
+{"level":"info","message":"[fireEmployee] Employee with 1234 was fired and and moved to firedEmployee_collection"}
+{"level":"info","message":"[fireEmployee] Employee with 123 was fired and and moved to firedEmployee_collection"}
+{"level":"info","message":"[fireEmployee] Employee with 1234 was fired and and moved to firedEmployee_collection"}
+{"level":"info","message":"[fireEmployee] Employee with 123 was fired and and moved to firedEmployee_collection"}
+{"level":"info","message":"[fireEmployee] Employee with 1234 was fired and and moved to firedEmployee_collection"}
+{"level":"info","message":"[fireEmployee] Employee with 123 was fired and and moved to firedEmployee_collection"}
+{"level":"info","message":"[fireEmployee] Employee with 123 was fired and and moved to firedEmployee_collection"}
+{"level":"info","message":"[fireEmployee] Employee with 1234 was fired and and moved to firedEmployee_collection"}
+{"level":"info","message":"[fireEmployee] Employee with 123 was fired and and moved to firedEmployee_collection"}
+{"level":"warn","message":"[fireEmployee] Employee with  1234 not found"}
+{"level":"warn","message":"[fireEmployee] Employee with  1234 not found"}
+{"level":"info","message":"[fireEmployee] Employee with 123 was fired and and moved to firedEmployee_collection"}
+{"level":"warn","message":"[fireEmployee] Employee with  1234 not found"}
+{"level":"warn","message":"[fireEmployee] Employee with  1234 not found"}
+{"level":"warn","message":"[fireEmployee] Employee with  1234 not found"}
+{"level":"info","message":"[fireEmployee] Employee with 123 was fired and and moved to firedEmployee_collection"}
+{"level":"warn","message":"[fireEmployee] Employee with  1234 not found"}
+{"level":"warn","message":"[fireEmployee] Employee with  1234 not found"}
+{"level":"warn","message":"[fireEmployee] Employee with  1234 not found"}
+{"level":"warn","message":"[fireEmployee] Employee with  1234 not found"}
+{"level":"warn","message":"[fireEmployee] Employee with  1234 not found"}
+{"level":"warn","message":"[fireEmployee] Employee with  1234 not found"}
+{"level":"info","message":"[fireEmployee] Employee with 123 was fired and and moved to firedEmployee_collection"}
+{"level":"warn","message":"[fireEmployee] Employee with  1234 not found"}
+{"level":"info","message":"[fireEmployee] Employee with 123 was fired and and moved to firedEmployee_collection"}
+{"level":"info","message":"Service start to process request"}
+{"level":"warn","message":"[startShift] 2025-09-18T09:52:12.480Z => Previous shift not closed, 409 Conflict"}
+{"level":"error","message":"Forbidden to start shift","method":"POST","stack":"Error: Forbidden to start shift\n    at ShiftControlServiceImplMongo.startShift (file:///Users/dinaratylemisova/WebstormProjects/NodeJS/time_tracking_dinara/build/src/services/ShiftControlServiceImplMongo.js:18:19)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async startShift (file:///Users/dinaratylemisova/WebstormProjects/NodeJS/time_tracking_dinara/build/src/controllers/shiftControlController.js:10:20)","status":409,"url":"/shifts?table_num=963cce53-5775-4d8c-acc7-515949506570"}
+{"level":"info","message":"Employee 963cce53-5775-4d8c-acc7-515949506570 finished shift at 1757631340517"}
+{"level":"info","message":"Service start to process request"}
+{"level":"warn","message":"[startShift] Employee 963cce53-5775-4d8c-acc7-515949506570: Time between shifts less then 8 hours"}
+{"level":"error","message":"Forbidden to start shift","method":"POST","stack":"Error: Forbidden to start shift\n    at ShiftControlServiceImplMongo.startShift (file:///Users/dinaratylemisova/WebstormProjects/NodeJS/time_tracking_dinara/build/src/services/ShiftControlServiceImplMongo.js:25:23)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async startShift (file:///Users/dinaratylemisova/WebstormProjects/NodeJS/time_tracking_dinara/build/src/controllers/shiftControlController.js:10:20)","status":409,"url":"/shifts?table_num=963cce53-5775-4d8c-acc7-515949506570"}
+{"level":"info","message":"Service start to process request"}
+{"level":"info","message":"Employee f70f2068-814d-4590-9c65-538ef03aba3b started new shift at 1758189270209"}
+{"level":"warn","message":"[setRole] Attempt to change role for employee newRole failed"}
+{"level":"info","message":"[setRole] Role of employee 123 changed to newRole"}
+{"level":"info","message":"[setRole] Role of employee 123 changed to newRole"}
+{"level":"info","message":"[setRole] Role of employee 123 changed to newRole"}
+{"level":"info","message":"[setRole] Role of employee 123 changed to newRole"}
+{"level":"warn","message":"[setRole] Attempt to change role for employee newRole failed"}
+{"level":"info","message":"[setRole] Role of employee 123 changed to newRole"}
+{"level":"warn","message":"[changePassword] Account with  1234 not found"}
+{"level":"warn","message":"[changePassword] Account with  1234 not found"}
+{"level":"warn","message":"[changePassword] Account with  1234 not found"}
+{"level":"warn","message":"[changePassword] Account with  1234 not found"}
+{"level":"info","message":"[changePassword] Password of employee with 123 was changed"}
+{"level":"info","message":"[changePassword] Password of employee with 123 was changed"}
+{"level":"info","message":"[changePassword] Password of employee with 123 was changed"}
+{"level":"info","message":"[changePassword] Password of employee with 123 was changed"}
+{"level":"info","message":"[changePassword] Password of employee with 123 was changed"}
+{"level":"info","message":"[changePassword] Password of employee with 123 was changed"}
+{"level":"warn","message":"[updateEmployee] Employee with  1234 not found"}
+{"level":"info","message":"[updateEmployee] Employee 123 updated: firstName=MockEmp, lastName=MOCK`"}
+{"level":"info","message":"[updateEmployee] Employee 123 updated: firstName=MockEmp, lastName=MOCK`"}
+{"level":"info","message":"[updateEmployee] Employee 444 updated: firstName=MockEmp, lastName=MOCK`"}
+{"level":"info","message":"[changePassword] Password of employee with 123 was changed"}
+{"level":"info","message":"[changePassword] Password of employee with 123 was changed"}
+{"level":"info","message":"[changePassword] Password of employee with 123 was changed"}
+{"level":"info","message":"[changePassword] Password of employee with 123 was changed"}
+{"level":"info","message":"[changePassword] Password of employee with 123 was changed"}
+{"level":"info","message":"[changePassword] Password of employee with 123 was changed"}
+{"level":"info","message":"[changePassword] Password of employee with 123 was changed"}

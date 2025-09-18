@@ -2,46 +2,38 @@ import {AccountService} from "./accountService.js";
 import {HttpError} from "../errorHandler/HttpError.js";
 import bcrypt from "bcrypt";
 import {Employee, SavedFiredEmployee, UpdateEmployeeDto} from "../model/Employee.js";
-import {EmployeeModel, firedEmployeeModel} from "../model/EmployeeMongooseModel.js";
+import {EmployeeModel, FiredEmployeeModel} from "../model/EmployeeMongooseModel.js";
 // import {LoginPassType, Roles} from "../utils/libTypes.js";
-import {checkRole} from "../utils/tools.js";
+import {checkFiredEmployee, checkRole, convertEmployeeToFiredEmployee} from "../utils/tools.js";
 import {logger} from "../Logger/winston.js";
 
 
 export class AccountServiceImplMongo implements AccountService {
 
     async hireEmployee(employee: Employee): Promise<Employee> {
-        const isExist = await EmployeeModel.findById(employee._id).exec();
+        const isExist = await EmployeeModel.findById(employee._id);
         if (isExist) {
             logger.warn(`[hireEmployee] Employee with  ${employee._id} already exists`)
-            throw new HttpError(409, "Employee already exists");
+            throw new HttpError(409, `Employee with id ${employee._id} already exists`);
         }
-        const firedEmployee = await firedEmployeeModel.findById(employee._id).exec();
-        if (firedEmployee) {
-            logger.warn(`[hireEmployee] Employee with ${employee._id} was fired ${firedEmployee.fireDate}`)
-            console.log(`Employee with ${employee._id} was fired`);
-        }
+        await checkFiredEmployee(employee._id);
         const newEmployee = new EmployeeModel(employee);
         await newEmployee.save();
         logger.info(`[hireEmployee] Employee with ${employee._id} was added`);
-        return newEmployee;
+        return employee;
     }
 
     async fireEmployee(empId: string): Promise<SavedFiredEmployee> {
-        const employee = await EmployeeModel.findById(empId).exec();
+        const employee = await EmployeeModel.findByIdAndDelete(empId).exec();
         if (!employee) {
             logger.warn(`[fireEmployee] Employee with  ${empId} not found`)
-            throw new HttpError(404, "Employee not found");
+            throw new HttpError(404, `Employee with  ${empId} not found`);
         }
-        const fireDate = {
-            ...employee.toObject(),
-            fireDate: new Date().toDateString()
-        }
-        const firedEmployee = new firedEmployeeModel(fireDate);
+       const fired: SavedFiredEmployee = convertEmployeeToFiredEmployee(employee as Employee);
+        const firedEmployee = new FiredEmployeeModel(fired);
         await firedEmployee.save();
-        await EmployeeModel.findByIdAndDelete(empId).exec();
         logger.info(`[fireEmployee] Employee with ${empId} was fired and and moved to firedEmployee_collection`);
-        return firedEmployee as SavedFiredEmployee;
+        return fired;
     }
 
 
@@ -72,13 +64,13 @@ export class AccountServiceImplMongo implements AccountService {
     }
 
     async getEmployeeById(id: string): Promise<Employee> {
-        const employee = await EmployeeModel.findById(id);
+        const employee = await EmployeeModel.findById(id).exec();
         if (!employee) throw new HttpError(404, `Employee with id ${id} not found`);
         return employee
     }
 
     async getAllEmployees(): Promise<SavedFiredEmployee[]> {
-        const result = await firedEmployeeModel.find().exec()
+        const result = await FiredEmployeeModel.find().exec()
         return result as SavedFiredEmployee[];
     }
 

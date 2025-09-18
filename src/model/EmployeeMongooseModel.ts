@@ -30,6 +30,6 @@ const firedEmployeeMongooseSchema = new mongoose.Schema({
     // workPeriods: {type: [WorkPeriod], default:[]}
 }, {versionKey:false});
 
-export const firedEmployeeModel = mongoose.model('Fired Employee', firedEmployeeMongooseSchema,"firedEmployee_collection");
+export const FiredEmployeeModel = mongoose.model('Fired Employee', firedEmployeeMongooseSchema,"firedEmployee_collection");
 
 

@@ -2,9 +2,11 @@ import bcrypt from "bcrypt";
 import {Roles} from "./libTypes.js";
 import jwt, {SignOptions} from "jsonwebtoken";
 import {configuration} from "../config/libConfig.js";
-import {Employee, EmployeeDto} from "../model/Employee.js";
+import {Employee, EmployeeDto, SavedFiredEmployee} from "../model/Employee.js";
 import {v4 as uuidv4} from 'uuid';
 import {HttpError} from "../errorHandler/HttpError.js";
+import {FiredEmployeeModel} from "../model/EmployeeMongooseModel.js";
+import {logger} from "../Logger/winston.js";
 
 
 function generateTabNumber() {
@@ -22,6 +24,23 @@ export const convertEmployeeDtoToEmployee = (dto: EmployeeDto): Employee => {
         roles: Roles.CREW,
         table_num: generateTabNumber(),
     }
+}
+
+export const convertEmployeeToFiredEmployee = (employee: Employee) => {
+    const firedEmployee: SavedFiredEmployee = {
+        _id: employee._id,
+        firstName: employee.firstName,
+        lastName: employee.lastName,
+        table_num: employee.table_num,
+        fireDate: new Date().toDateString()
+    }
+    return firedEmployee;
+}
+
+export const checkFiredEmployee = async (id: string) => {
+        if (await FiredEmployeeModel.findById({id}))
+        logger.warn(`[hireEmployee] Employee with ${id} was fired`);
+        throw new HttpError(409, `Employee with ${id} was fired`);
 }
 
 export const checkRole = (role:string) => {

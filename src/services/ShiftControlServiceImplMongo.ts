@@ -11,6 +11,7 @@ import {configuration} from "../config/libConfig.js";
 export class ShiftControlServiceImplMongo implements ShiftControlService {
 
     async startShift(table_num: string): Promise<Shift> {
+        logger.info(`Service start to process request`)
         const tab_num = await EmployeeModel.findOne({table_num: table_num}).exec();
         if (!tab_num) {
             logger.warn(`[startShift] Employee with  ${table_num} not found`);

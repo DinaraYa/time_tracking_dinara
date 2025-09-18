@@ -3,9 +3,12 @@ import {CurrentCrewShift, Shift} from "../model/Shift.js";
 import e, {Request, Response} from "express";
 import {HttpError} from "../errorHandler/HttpError.js";
 import {startShiftControlMongo as service} from "../services/ShiftControlServiceImplMongo.js";
+import {logger} from "../Logger/winston.js";
 
 export const startShift = async (req: Request, res: Response) => {
-    const table_num = req.query.table_num
+    logger.debug(new Date().toISOString() +  "=> Request for starting shift");
+    const table_num = req.query.table_num;
+    logger.debug(`Table number: ${table_num}`);
     if(!table_num || typeof table_num !== 'string' || table_num.trim() === '') throw new HttpError(404, `Employee with ${table_num} doesn't exist`);
     const result = await service.startShift(table_num as string);
     return res.json(result);

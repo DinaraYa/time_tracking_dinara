@@ -1,6 +1,6 @@
 import mysql, {Pool} from 'mysql2/promise';
 import dotenv from 'dotenv';
-import appConf from "../../appConfig/app-config.json" with {type: "json"}
+import appConf = require('../../appConfig/app-config.json');
 
 
 export interface AppConfig {
