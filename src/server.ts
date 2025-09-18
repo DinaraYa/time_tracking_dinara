@@ -6,6 +6,8 @@ import dotenv from 'dotenv';
 import {errorHandler} from "./errorHandler/errorHandler.js";
 import {accountsRouter} from "./routes/accountsRouter.js";
 import {shiftsRouter} from "./routes/shiftsRouter.js";
+import swaggerUi from "swagger-ui-express";
+import swaggerDoc = require("../docs/openapi.json") ;
 
 
 export const launchServer = () => {
@@ -23,7 +25,7 @@ export const launchServer = () => {
     // ================= SecurityMiddleware ================
 
     // ===================== Middlewares ===================
-
+    //============ Security =============
     // app.use(authenticate(employeeServiceMongo));
     // app.use(skipRoutes(configuration.skipRoutes));
     // app.use(authorize(configuration.pathRoles as Record<string, Roles[]>));
@@ -36,9 +38,13 @@ export const launchServer = () => {
     app.use(morgan('dev')); // пишем в консоль
     app.use(morgan('combined', { stream: logStream }));
 
+    //============== Swagger Docs ================
 
-
-
+    app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDoc, {
+        swaggerOptions: {
+            supportedSubmitMethods: []
+        }
+    }));
 
     // ===================== Router ===================
 

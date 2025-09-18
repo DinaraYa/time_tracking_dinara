@@ -38,9 +38,11 @@ export const convertEmployeeToFiredEmployee = (employee: Employee) => {
 }
 
 export const checkFiredEmployee = async (id: string) => {
-        if (await FiredEmployeeModel.findById({id}))
+    const fired =   await FiredEmployeeModel.findById(id)
+    if (fired) {
         logger.warn(`[hireEmployee] Employee with ${id} was fired`);
         throw new HttpError(409, `Employee with ${id} was fired`);
+    }
 }
 
 export const checkRole = (role:string) => {

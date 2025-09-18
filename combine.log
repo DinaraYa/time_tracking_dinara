@@ -223,3 +223,7 @@
 {"level":"info","message":"[changePassword] Password of employee with 123 was changed"}
 {"level":"info","message":"[changePassword] Password of employee with 123 was changed"}
 {"level":"info","message":"[changePassword] Password of employee with 123 was changed"}
+{"level":"info","message":"[changePassword] Password of employee with 123 was changed"}
+{"level":"info","message":"[hireEmployee] Employee with 999999999 was added"}
+{"level":"warn","message":"[hireEmployee] Employee with  999999999 already exists"}
+{"level":"error","message":"Employee with id 999999999 already exists","method":"POST","stack":"Error: Employee with id 999999999 already exists\n    at AccountServiceImplMongo.hireEmployee (file:///Users/dinaratylemisova/WebstormProjects/NodeJS/time_tracking_dinara/build/src/services/AccountServiceImplMongo.js:12:19)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async hireEmployee (file:///Users/dinaratylemisova/WebstormProjects/NodeJS/time_tracking_dinara/build/src/controllers/accountController.js:6:5)","status":409,"url":"/accounts"}
